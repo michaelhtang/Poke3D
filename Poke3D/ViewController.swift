@@ -70,11 +70,12 @@ class ViewController: UIViewController, ARSCNViewDelegate {
             
             node.addChildNode(planeNode)
             
-            if let pokeScene = SCNScene(named: "art.scnassets/Eevee_2.scn") {
+            if let pokeScene = SCNScene(named: "art.scnassets/eevee.scn") {
                 
                 if let pokeNode = pokeScene.rootNode.childNodes.first {
                     
                     planeNode.addChildNode(pokeNode)
+                    pokeNode.eulerAngles.x = -.pi
                     
                 }
             }
