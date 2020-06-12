@@ -11,7 +11,7 @@ import SceneKit
 import ARKit
 
 class ViewController: UIViewController, ARSCNViewDelegate {
-
+    
     @IBOutlet var sceneView: ARSCNView!
     
     override func viewDidLoad() {
@@ -34,11 +34,11 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         let configuration = ARImageTrackingConfiguration()
         
         if let imageToTrack = ARReferenceImage.referenceImages(inGroupNamed: "Pokemon Cards", bundle: Bundle.main) {
-        
             
-        configuration.trackingImages = imageToTrack
             
-            configuration.maximumNumberOfTrackedImages = 1
+            configuration.trackingImages = imageToTrack
+            
+            configuration.maximumNumberOfTrackedImages = 2
             
             print("Images Succesfully Added")
         }
@@ -52,13 +52,15 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         // Pause the view's session
         sceneView.session.pause()
     }
-
+    
     // MARK: - ARSCNViewDelegate
     
     func renderer(_ renderer: SCNSceneRenderer, nodeFor anchor: ARAnchor) -> SCNNode? {
         let node = SCNNode()
         
         if let imageAnchor = anchor as? ARImageAnchor {
+            
+            
             
             let plane = SCNPlane(width: imageAnchor.referenceImage.physicalSize.width, height: imageAnchor.referenceImage.physicalSize.height)
             
@@ -70,17 +72,36 @@ class ViewController: UIViewController, ARSCNViewDelegate {
             
             node.addChildNode(planeNode)
             
-            if let pokeScene = SCNScene(named: "art.scnassets/eevee.scn") {
+            if imageAnchor.referenceImage.name == "eevee-card" {
                 
-                if let pokeNode = pokeScene.rootNode.childNodes.first {
+                if let pokeScene = SCNScene(named: "art.scnassets/eevee.scn") {
+                
+                    if let pokeNode = pokeScene.rootNode.childNodes.first {
+                        pokeNode.eulerAngles.x = .pi
+                        planeNode.addChildNode(pokeNode)
                     
-                    planeNode.addChildNode(pokeNode)
-                    pokeNode.eulerAngles.x = -.pi
                     
                 }
+                    }
+                
             }
+           
+            if imageAnchor.referenceImage.name == "squirtle-card" {
+                
+                if let pokeScene = SCNScene(named: "art.scnassets/squirtle.scn") {
+                
+                    if let pokeNode = pokeScene.rootNode.childNodes.first {
+                        pokeNode.eulerAngles.x = .pi
+                        planeNode.addChildNode(pokeNode)
+                    
+                    
+                }
+                    }
+                
+            }
+            
         }
-        	
+        
         return node
     }
 }
