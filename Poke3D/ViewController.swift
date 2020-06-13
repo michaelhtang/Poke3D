@@ -38,7 +38,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
             
             configuration.trackingImages = imageToTrack
             
-            configuration.maximumNumberOfTrackedImages = 2
+            configuration.maximumNumberOfTrackedImages = 9
             
             print("Images Succesfully Added")
         }
@@ -70,26 +70,43 @@ class ViewController: UIViewController, ARSCNViewDelegate {
             
             node.addChildNode(planeNode)
             
-            if let cardDetected = imageAnchor.referenceImage.name {
-                
-                if imageAnchor.referenceImage.name == "\(cardDetected)" {
-                    
-                    if let pokeScene = SCNScene(named: "art.scnassets/\(cardDetected).scn") {
-                        
-                        if let pokeNode = pokeScene.rootNode.childNodes.first {
-                            pokeNode.eulerAngles.x = .pi
-                            planeNode.addChildNode(pokeNode)
-                            
-                            
-                        }
-                    }
-                    
-                }
-                
+            switch imageAnchor.referenceImage.name {
+            case "squirtleBase":
+                spawnPokemon(named: "squirtleBase" ,on: planeNode, euler: -.pi)
+            case "wartortle":
+                spawnPokemon(named: "wartortle" ,on: planeNode, euler: -.pi / 2)
+            case "blastoise":
+                spawnPokemon(named: "blastoise" ,on: planeNode, euler: -.pi)
+            case "charmander":
+                spawnPokemon(named: "charmander" ,on: planeNode, euler: -.pi)
+            case "charmeleon":
+                spawnPokemon(named: "charmeleon" ,on: planeNode, euler: -.pi / 2)
+            case "charizard":
+                spawnPokemon(named: "charizard" ,on: planeNode, euler: -.pi)
+            case "bulbasaur":
+                spawnPokemon(named: "bulbasaur" ,on: planeNode, euler: -.pi)
+            case "ivysaur":
+                spawnPokemon(named: "ivysaur" ,on: planeNode, euler: -.pi / 2)
+            case "venusaur":
+                spawnPokemon(named: "venusaur" ,on: planeNode, euler: -.pi)
+            default:
+                return node
             }
-            
         }
         
         return node
     }
+ 
+    func spawnPokemon(named name: String, on planeNode: SCNNode, euler: Float) {
+        if let pokeScene = SCNScene(named: "art.scnassets/\(name).scn") {
+            
+            if let pokeNode = pokeScene.rootNode.childNodes.first {
+                pokeNode.eulerAngles.x = euler
+                planeNode.addChildNode(pokeNode)
+                
+                
+            }
+        }
+    }
+    
 }

@@ -8,16 +8,37 @@
       "filename" : "blastoise.arreferenceimage"
     },
     {
+      "filename" : "bulbasaur.arreferenceimage"
+    },
+    {
       "filename" : "charizard.arreferenceimage"
+    },
+    {
+      "filename" : "charmander.arreferenceimage"
+    },
+    {
+      "filename" : "charmeleon.arreferenceimage"
     },
     {
       "filename" : "eevee.arreferenceimage"
     },
     {
+      "filename" : "ivysaur.arreferenceimage"
+    },
+    {
       "filename" : "squirtle.arreferenceimage"
     },
     {
+      "filename" : "squirtleBase.arreferenceimage"
+    },
+    {
       "filename" : "umbreon.arreferenceimage"
+    },
+    {
+      "filename" : "venusaur.arreferenceimage"
+    },
+    {
+      "filename" : "wartortle.arreferenceimage"
     }
   ]
 }
