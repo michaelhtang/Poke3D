@@ -5,10 +5,19 @@
   },
   "resources" : [
     {
-      "filename" : "eevee-card.arreferenceimage"
+      "filename" : "blastoise.arreferenceimage"
     },
     {
-      "filename" : "squirtle-card.arreferenceimage"
+      "filename" : "charizard.arreferenceimage"
+    },
+    {
+      "filename" : "eevee.arreferenceimage"
+    },
+    {
+      "filename" : "squirtle.arreferenceimage"
+    },
+    {
+      "filename" : "umbreon.arreferenceimage"
     }
   ]
 }

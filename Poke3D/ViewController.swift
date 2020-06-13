@@ -60,8 +60,6 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         
         if let imageAnchor = anchor as? ARImageAnchor {
             
-            
-            
             let plane = SCNPlane(width: imageAnchor.referenceImage.physicalSize.width, height: imageAnchor.referenceImage.physicalSize.height)
             
             plane.firstMaterial?.diffuse.contents = UIColor(white: 1.0, alpha: 0.5)
@@ -72,31 +70,21 @@ class ViewController: UIViewController, ARSCNViewDelegate {
             
             node.addChildNode(planeNode)
             
-            if imageAnchor.referenceImage.name == "eevee-card" {
+            if let cardDetected = imageAnchor.referenceImage.name {
                 
-                if let pokeScene = SCNScene(named: "art.scnassets/eevee.scn") {
-                
-                    if let pokeNode = pokeScene.rootNode.childNodes.first {
-                        pokeNode.eulerAngles.x = .pi
-                        planeNode.addChildNode(pokeNode)
+                if imageAnchor.referenceImage.name == "\(cardDetected)" {
                     
+                    if let pokeScene = SCNScene(named: "art.scnassets/\(cardDetected).scn") {
+                        
+                        if let pokeNode = pokeScene.rootNode.childNodes.first {
+                            pokeNode.eulerAngles.x = .pi
+                            planeNode.addChildNode(pokeNode)
+                            
+                            
+                        }
+                    }
                     
                 }
-                    }
-                
-            }
-           
-            if imageAnchor.referenceImage.name == "squirtle-card" {
-                
-                if let pokeScene = SCNScene(named: "art.scnassets/squirtle.scn") {
-                
-                    if let pokeNode = pokeScene.rootNode.childNodes.first {
-                        pokeNode.eulerAngles.x = .pi
-                        planeNode.addChildNode(pokeNode)
-                    
-                    
-                }
-                    }
                 
             }
             
